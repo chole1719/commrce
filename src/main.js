@@ -18,7 +18,7 @@ import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 
-//lodash
+//lodash    
 import _ from 'lodash'
 
 import echarts from 'echarts'
