@@ -18,7 +18,7 @@ import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 
-//lodash你好
+//lodash  可敬的爽肤水  
 import _ from 'lodash'
 
 import echarts from 'echarts'
