@@ -24,7 +24,7 @@
               router
               :default-active="activePath">
            <!--一级菜单-->
-              <el-submenu :index="item.id+''" v-for="item in menulist" :key="item.id">
+              <el-submenu index="item.id" v-for="item in menulist" :key="item.id">
               <!--一级菜单的模版区域-->
                 <template slot="title">
                    <!--图标-->
@@ -141,4 +141,4 @@
     letter-spacing: 0.2em;
     cursor: pointer;
   }
-</style>'/'+subitem.path
+</style>
