@@ -242,7 +242,7 @@ export default {
       // 2.从pics数组中，找到图片对应的索引值
       const i = this.addForm.pics.findIndex(x => x.pic === filePath)
       // 3.调用splice方法，移除图片信息
-      this.addForm.splice(i, 1)
+      this.addForm.pics.splice(i, 1)
     },
     // 监听图片上传成功事件
     handleSuccess (response) {

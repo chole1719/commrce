@@ -28,7 +28,7 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
 //配置请求的根路径
-axios.defaults.baseURL="http://127.0.0.1:8300/api/private/v1/"
+axios.defaults.baseURL="http://203.195.139.221:8300/api/private/v1/"
 
 //在request拦截器中，展示进度条NProgress.start()
 axios.interceptors.request.use(config =>{
