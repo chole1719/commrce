@@ -15,7 +15,7 @@
     </el-card>
 
 
-    <el-carousel :interval="4000" type="card" height="380px" >
+    <el-carousel :interval="4000" type="card" height="360px" >
         <el-carousel-item v-for="item in imagesbox" :key="item.id">
          <img :src="item.idView" class="image">
         </el-carousel-item>
