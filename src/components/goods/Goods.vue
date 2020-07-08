@@ -29,8 +29,8 @@
               border>
               <el-table-column type="index" label="#"> </el-table-column>
               <el-table-column prop="goods_name" label="商品名称" ></el-table-column>
-              <el-table-column prop="goods_price" label="商品价格(元)" width="90px"></el-table-column>
-              <el-table-column prop="goods_weight" label="商品重量" width="90px"></el-table-column>
+              <el-table-column prop="goods_price" label="商品价格(元)" width="120px"></el-table-column>
+              <el-table-column prop="goods_weight" label="商品重量(ml)" width="120px"></el-table-column>
               <el-table-column prop="add_time"  label="创建时间" width="200px">
                 <template slot-scope="scope">
                   {{scope.row.add_time | dateFormat}}
@@ -38,7 +38,7 @@
               </el-table-column>
               <el-table-column  label="操作" width="300px" >
                <template slot-scope="scope" >
-                 <el-button type="primary" icon="el-icon-edit"  size="mini">编辑</el-button>
+                 <el-button type="primary" icon="el-icon-edit"  size="mini" @click="getOneGoodList(scope.row.goods_id)" >编辑</el-button>
                  <el-button type="danger" icon="el-icon-delete" size="mini" @click="removeGoodsList(scope.row.goods_id)">删除</el-button>
                </template>
               </el-table-column>
@@ -54,6 +54,40 @@
                 layout="total, sizes, prev, pager, next, jumper"
                 :total="total">
               </el-pagination>
+
+              <!--修改商品的对话框-->
+      <el-dialog title="修改商品信息" :visible.sync="editGoodsDialogVisible" width="50%">
+        <el-form
+          ref="editGoodsFormRef"
+          :model="editGoodsForm"
+          :rules="editGoodsFormRules"
+          label-width="80px"
+        >
+          <el-form-item label="商品名称" prop="goods_name">
+            <el-input v-model="editGoodsForm.goods_name"></el-input>
+          </el-form-item>
+          <el-form-item label="商品价格" prop="goods_weight">
+            <el-input v-model="editGoodsForm.goods_weight" type="number"></el-input>
+          </el-form-item>
+           <el-form-item label="商品重量" prop="goods_price" >
+            <el-input v-model="editGoodsForm.goods_price" type="number"></el-input>
+          </el-form-item>
+          <el-form-item label="商品数量" prop="goods_number" >
+            <el-input v-model="editGoodsForm.goods_number" type="number"></el-input>
+          </el-form-item>
+          <el-form-item label="商品介绍" prop="goods_introduce" >
+            <el-input v-model="editGoodsForm.goods_introduce"></el-input>
+          </el-form-item>
+          <el-form-item label="创建时间" prop="add_time">
+            <el-input v-model="add_time"></el-input>
+          </el-form-item>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="editGoodsDialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="saveEditGoods">确 定</el-button>
+        </span>
+      </el-dialog>
+
     </el-card>
 
 
@@ -75,7 +109,22 @@
         },
         //用于获取商品列表的数据
         goodslist:[],
-        total:0
+        total:1,
+        editGoodsForm: {
+        goods_id:"",
+        goods_name: "",
+        goods_weight: "",
+        goods_price: "",
+        add_time: "",
+        goods_introduce:""
+        },
+        editGoodsDialogVisible:false,
+        editGoodsFormRules:{
+          goods_name:[
+              {required: true,message: '请输入商品名称',trigger: 'blur'},
+              {min: 1,max: 60,message: '长度在 1 到 60 个字符',trigger: 'blur'},
+              ]
+        }
       }
     },
     created(){
@@ -106,6 +155,21 @@
         this.queryInfo.pagesize=newSize
         this.getgGoodsList()
       },
+      //显示商品信息的对话框
+    async getOneGoodList(id) {
+      const { data: res } = await this.$http.get(`goods/${id}`);
+      this.editGoodsForm = res.data;
+      console.log(res);
+      this.editGoodsDialogVisible = true;
+    },
+    //保存修改的商品信息
+    async saveEditGoods(){
+     const { data: res } = await this.$http.put(`goods/${this.editGoodsForm.goods_id}`,this.editGoodsForm) 
+      if(res.meta.status!==200){ return this.$message.error("修改商品失败")}
+      this.getgGoodsList()
+      this.$message.success("修改商品成功！")
+      this.editGoodsDialogVisible=false
+     },
       //监听删除按钮，删当前数据
      async removeGoodsList(id){
         const confirmResult = await this.$confirm(
@@ -129,7 +193,19 @@
       }
 
 
-     }
+     },
+     computed: {
+    add_time() {
+        let date = new Date(this.editGoodsForm.add_time);
+        let y = date.getFullYear();
+        let m = (date.getMonth() + 1 + "").padStart("2", "0");
+        let d = (date.getDate() + "").padStart("2", "0");
+        let hh = (date.getHours() + "").padStart("2", "0");
+        let mm = (date.getMinutes() + "").padStart("2", "0");
+        let ss = (date.getSeconds() + "").padStart("2", "0");
+        return `${y}-${m}-${d} ${hh}:${mm}:${ss}`;
+    }
+  }
   }
 </script>
 

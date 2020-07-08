@@ -84,7 +84,7 @@
        </el-form>
        <span slot="footer" class="dialog-footer">
          <el-button @click="adressVisible = false">取 消</el-button>
-         <el-button type="primary" @click="adressVisible = false">确 定</el-button>
+         <el-button type="primary" @click="saveAdress">确 定</el-button>
        </span>
      </el-dialog>
 
@@ -206,6 +206,10 @@
          //级联选择器发生变化触发
          handleChange(){
 
+         },
+         saveAdress(){
+           this.adressVisible = false
+           this.$message.success("修改地址成功")
          }
 
 

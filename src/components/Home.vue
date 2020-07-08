@@ -1,9 +1,8 @@
 <template>
-  <el-container class="home-container">
+  <el-container>
     <!--头部区域-->
     <el-header>
       <div>
-        <img />
         <span>电商管理系统</span>
       </div>
       <el-button type="info" @click="logout">退出</el-button>
@@ -11,20 +10,23 @@
     <!--页面主体区域-->
     <el-container>
        <!--侧边栏-->
-      <el-aside :width="isCollapase?'64px' :'200px'">
+      <el-aside :width="isCollapse ? '64px' : '200px'">
         <div class="toggle-button" @click="togglaCollapse">|||</div>
         <!--侧边栏菜单区域-->
          <el-menu
-              background-color="#545c64"
-              text-color="#fff"
-              active-text-color="#409EFF"
-              unique-opened
-              :collapse="isCollapase"
-              :collapse-transition="false"
-              router
-              :default-active="activePath">
+         unique-opened
+         :collapse="isCollapse" 
+         :collapse-transition="false" 
+         router 
+         :default-active="activePath" 
+         background-color="#333744"
+         text-color="#fff" 
+         active-text-color="#409FFF">
+           <!-- :unique-opened="true"->只允许展开一个菜单 -->
+           <!-- :collapse-transition="false" -> 关闭动画 -->
+           <!-- router -> 导航开启路由模式 -->
            <!--一级菜单-->
-              <el-submenu index="item.id" v-for="item in menulist" :key="item.id">
+              <el-submenu :index="item.id+''" v-for="item in menulist" :key="item.id">
               <!--一级菜单的模版区域-->
                 <template slot="title">
                    <!--图标-->
@@ -70,7 +72,7 @@
         //被激活的链接地址
         activePath:"",
         //是否折叠
-        isCollapase:false
+        isCollapse:false
       }
     },
     //获取所有的菜单
@@ -93,7 +95,7 @@
       },
       //点击按钮切菜单的折叠与展开
       togglaCollapse(){
-          this.isCollapase=!this.isCollapase;
+          this.isCollapse=!this.isCollapse;
       },
       //保存连接的激活状态
       saveNavState(activePath){
@@ -106,6 +108,9 @@
 </script>
 
 <style lang="less" scoped>
+.el-container {
+  height: 100%;
+}
   .el-header{
     background-color: #373d41;
     display: flex;

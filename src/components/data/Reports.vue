@@ -15,9 +15,9 @@
     </el-card>
 
 
-    <el-carousel :interval="5000" arrow="always">
-        <el-carousel-item v-for="item in 4" :key="item">
-          <h3>{{ item }}</h3>
+    <el-carousel :interval="4000" type="card" height="380px" >
+        <el-carousel-item v-for="item in imagesbox" :key="item.id">
+         <img :src="item.idView" class="image">
         </el-carousel-item>
       </el-carousel>
   </div>
@@ -57,7 +57,12 @@ data(){
                 type: 'value'
               }
             ]
-          }
+          },
+     imagesbox:[
+         {id:0,idView:require("../../assets/001.png")},     
+         {id:1,idView:require("../../assets/002.png")},
+         {id:2,idView:require("../../assets/003.png")}
+     ]
 
   }
 },
@@ -99,5 +104,9 @@ methods:{
 
     .el-carousel__item:nth-child(2n+1) {
       background-color: #d3dce6;
+    }
+    .image{
+    width: 100%;
+    opacity: 0.75;
     }
 </style>

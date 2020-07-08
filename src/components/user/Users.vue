@@ -178,8 +178,8 @@
             },
             {
               min: 3,
-              max: 10,
-              message: '长度在 3 到 10 个字符',
+              max: 50,
+              message: '长度在 3 到 50 个字符',
               trigger: 'blur'
             }
           ],
@@ -190,8 +190,8 @@
             },
             {
               min: 3,
-              max: 10,
-              message: '长度在 3 到 10 个字符',
+              max: 50,
+              message: '长度在 3 到 50 个字符',
               trigger: 'blur'
             }
           ],
@@ -202,8 +202,8 @@
             },
             {
               min: 3,
-              max: 30,
-              message: '长度在 6 到 30 个字符',
+              max: 50,
+              message: '长度在 3 到 50 个字符',
               trigger: 'blur'
             },
             {

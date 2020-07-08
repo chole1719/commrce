@@ -154,7 +154,7 @@ data (){
        addCataFormRules:{
          cat_name: [
            {required: true,message: '请输入分类名称',trigger: 'blur'},
-           {min: 3,max: 10,message: '长度在 3 到 10 个字符',trigger: 'blur'}]
+           {min: 1,max: 10,message: '长度在 1 到 10 个字符',trigger: 'blur'}]
        },
        parentCataList:[],
        //指定级联选择器的配置对象
@@ -176,7 +176,7 @@ data (){
        editCataFormRules:{
          cat_name: [
            {required: true,message: '请输入分类名称',trigger: 'blur'},
-           {min: 3,max: 10,message: '长度在 3 到 10 个字符',trigger: 'blur'}]
+           {min: 1,max: 10,message: '长度在 1 到 10 个字符',trigger: 'blur'}]
        }
     }
    },

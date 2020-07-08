@@ -180,7 +180,7 @@
        addParamsFormRules:{
          attr_name: [
              {required: true,message: '请输入分类名称',trigger: 'blur'},
-             {min: 3,max: 10,message: '长度在 3 到 10 个字符',trigger: 'blur'},
+             {min: 1,max: 10,message: '长度在 1 到 10 个字符',trigger: 'blur'},
              ]
          },
         editParamsDialogVisible:false,
@@ -191,7 +191,7 @@
         editParamsFormRules:{
           attr_name: [
               {required: true,message: '请输入分类名称',trigger: 'blur'},
-              {min: 3,max: 10,message: '长度在 3 到 10 个字符',trigger: 'blur'},
+              {min: 1,max: 10,message: '长度在 1 到 10 个字符',trigger: 'blur'},
               ]
         },
         inputVisible: false,

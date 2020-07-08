@@ -37,8 +37,8 @@
                 </el-col>
 
               </el-row>
+               <!--渲染二级和三级权限<pre>{{scope.row}}</pre>-->
               
-              <pre>{{scope.row}}</pre>
             </template>
           </el-table-column>
           <el-table-column  prop="roleid" type="index" label="#"></el-table-column>
@@ -132,11 +132,11 @@ data(){
         roleFormRules:{
           roleName: [
             { required: true, message: '请输入角色名称', trigger: 'blur' },
-            { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }
+            { min: 2, max: 15, message: '长度在 2 到 15 个字符', trigger: 'blur' }
           ],
           roleDesc: [
             { required: true, message: '请输入角色描述', trigger: 'blur' },
-            { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }
+            { min: 3, max:30, message: '长度在 3 到 30 个字符', trigger: 'blur' }
           ]
         },
         addRoleDialogVisible:false,
@@ -149,11 +149,11 @@ data(){
         editRoleFormRules:{
           roleName: [
             { required: true, message: '请输入角色名称', trigger: 'blur' },
-            { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }
+            { min: 3, max: 60, message: '长度在 3 到 60 个字符', trigger: 'blur' }
           ],
           roleDesc: [
             { required: true, message: '请输入角色描述', trigger: 'blur' },
-            { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }
+            { min: 3, max: 60, message: '长度在 3 到 60 个字符', trigger: 'blur' }
           ]
         },
         setRightDialog:false,
@@ -189,6 +189,8 @@ methods:{
             if(res.meta.status!==201){ return this.$message.error("添加角色失败")}
             this.roleForm=res.data
             this.$message.success("添加角色成功！")
+            this.addRoleDialogVisible=false
+            this.getRoleList()
             //console.log(res);
        })
        },
