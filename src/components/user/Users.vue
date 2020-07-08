@@ -308,18 +308,20 @@
       //监听switch开关状态的改变
       async userStatecChanged(userinfo) {
         //console.log(userinfo);
+        //console.log(userinfo.mg_state)
+        //userinfo.mg_state = !userinfo.mg_state
         const {
           data: res
         } = await this.$http.put(
-          `users/${userinfo.id}/state/$
-         {userinfo.mg_state}`
+          `users/${userinfo.id}/state/${userinfo.mg_state}`
         )
         //console.info( `users/${userinfo.id}/state/${userinfo.mg_state}`)
-        console.log(res);
+        //console.log(userinfo.mg_state)
         if (res.meta.status !== 200) {
-          userinfo.mg_state = !userinfo.mg_state
+          
           return this.$message.error("更新用户状态失败")
         }
+        
         this.$message.success("更新用户状态成功")
       },
       //监听对话框按钮的关闭事件
